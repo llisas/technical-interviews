@@ -48,10 +48,7 @@ jobs:
       - run: yarn build
 
       - uses: amondnet/vercel-action@v20 
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} 
-          vercel-org-id: ${{ secrets.ORG_ID}}  
-          vercel-project-id: ${{ secrets.VERCEL_ID }}
+       
       # Sets the branch name as environment variable
      # - uses: nelonoel/branch-name@v1.0.1
      # - uses: jsmrcaga/action-netlify-deploy@master
