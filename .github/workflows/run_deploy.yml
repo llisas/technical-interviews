@@ -22,7 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm i --location=global yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install 
       - run: yarn build
 
       - uses: amondnet/vercel-action@v20 
@@ -35,7 +35,7 @@ jobs:
     if: "contains(github.event.head_commit.message, 'deploy')"
     strategy:
        matrix:
-         node-version: [18]
+         node-version: [16]
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
