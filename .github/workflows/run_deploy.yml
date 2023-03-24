@@ -6,6 +6,29 @@ on:
 
 jobs:
   
+   unit-tests:
+    name: Unit & UI-Unit-Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    if: "contains(github.event.head_commit.message, 'test')"
+    strategy:
+       matrix:
+         node-version: [16]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm i --location=global yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+
+      - uses: amondnet/vercel-action@v20 
+        
+
+
    deploy:
     name: 'Deploy'
     runs-on: ubuntu-latest
